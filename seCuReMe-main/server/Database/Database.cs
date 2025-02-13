@@ -21,7 +21,7 @@ public class Database //Klass som ska ha en metod som heter Connection och retur
     Console.WriteLine($"DB_NAME: {Env.GetString("DB_NAME")}");
 
     
-    _connectionString = new NpgsqlConnectionStringBuilder // skapar en connection string till Builder som innehåller inlog data till server
+    _connectionString = new NpgsqlConnectionStringBuilder // skapar en connection-string till Builder som innehåller inlog-data till server
     {
       Host = Env.GetString("DB_HOST"),
       Port = Env.GetInt("DB_PORT"),

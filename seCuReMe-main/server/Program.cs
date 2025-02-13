@@ -1,8 +1,8 @@
 using Server.Database;
 using Microsoft.AspNetCore.Builder;//Why
 using Microsoft.AspNetCore.Http;//Why
-using Microsoft.Extensions.DependencyInjection;
-using Npgsql; //Why
+using Microsoft.Extensions.DependencyInjection; //Why
+using Npgsql; 
 
 
 var builder = WebApplication.CreateBuilder(args);
