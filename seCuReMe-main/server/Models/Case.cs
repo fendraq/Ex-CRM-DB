@@ -1,17 +1,17 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
-namespace server.Models;
+using System.Text.Json.Serialization;
 
+namespace Server.Models;
+
+[JsonConverter(typeof(JsonStringEnumConverter))]
 public enum CaseStatus
 {
-    Unopened,
-    Opened,
+    Unopened, 
+    Open, 
     Closed
 }
 
+[JsonConverter(typeof(JsonStringEnumConverter))]
 public enum CaseCategory
 {
     Shipping,
@@ -21,9 +21,9 @@ public enum CaseCategory
 }
 public class Case
 {
-    public int id { get; set; }
-    public CaseStatus status { get; set; } 
-    public CaseCategory category { get; set; }
+    public int? id { get; set; }
+    public CaseStatus? status { get; set; } 
+    public CaseCategory? category { get; set; } 
     public string? title { get; set; }
     public string? customer_first_name { get; set; }
     public string? customer_last_name { get; set; }
@@ -32,27 +32,28 @@ public class Case
     public DateTime? case_closed { get; set; }
     public int? case_handler { get; set; }
 
+    public Case() { }
     public Case(
-        int id,
-        CaseStatus status,
-        CaseCategory category,
-        string title,
-        string customerFirstName,
-        string customerLastName,
-        string customerEmail,
-        DateTime? caseOpened,
-        DateTime? caseClosed,
-        int? caseHandler)
+        int? id = null,
+        CaseStatus? status = CaseStatus.Unopened,
+        CaseCategory? category = null,
+        string title = "No Title",
+        string customerFirstName = "",
+        string customerLastName = "",
+        string customerEmail = "",
+        DateTime? caseOpened = null,
+        DateTime? caseClosed = null,
+        int? caseHandler = null)
     {
         this.id = id;
         this.status = status;
         this.category = category;
         this.title = title;
-        customer_first_name = customerFirstName;
-        customer_last_name = customerLastName;
-        customer_email = customerEmail;
-        case_opened = caseOpened;
-        case_closed = caseClosed;
-        case_handler = caseHandler;
+        this.customer_first_name = customerFirstName;
+        this.customer_last_name = customerLastName;
+        this.customer_email = customerEmail;
+        this.case_opened = caseOpened;
+        this.case_closed = caseClosed;
+        this.case_handler = caseHandler;
     }
 }
