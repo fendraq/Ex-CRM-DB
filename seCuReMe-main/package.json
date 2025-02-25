@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/Hiba-Khaleel/seCuReMe/issues"
   },
-  "homepage": "https://github.com/Hiba-Khaleel/seCuReMe#readme"
+  "homepage": "https://github.com/Hiba-Khaleel/seCuReMe#readme",
+  "dependencies": {
+    "dotenv": "^16.4.7"
+  }
 }

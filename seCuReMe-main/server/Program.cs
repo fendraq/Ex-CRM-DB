@@ -34,6 +34,26 @@ await database.TestConnectionAsync();
 
 NpgsqlDataSource _db = database.Connection();
 
+//dynamic Map
+app.Map("/users", async (HttpContext context, NpgsqlConnection db) =>
+{
+    if (context.Request.Method == "GET")
+    {
+        // Handle GET (Select from DB)
+        var id = context.Request.Query["id"];
+        var result = await db.QueryAsync<User>("SELECT * FROM users WHERE id = @Id", new { Id = id });
+        return Results.Ok(result);
+    }
+    else if (context.Request.Method == "POST")
+    {
+        // Handle POST (Insert into DB)
+        var user = await context.Request.ReadFromJsonAsync<User>();
+        await db.ExecuteAsync("INSERT INTO users (name, email) VALUES (@Name, @Email)", user);
+        return Results.Ok("User added successfully");
+    }
+    return Results.BadRequest("Invalid method");
+});
 app.MapGet("/", () => "Hello World!");
 
 app.Run();
+
